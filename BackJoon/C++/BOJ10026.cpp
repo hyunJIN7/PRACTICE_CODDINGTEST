@@ -8,7 +8,7 @@ void dfs1(int y, int x, char c){
 	if(rgb1[y][x] != c) return;
 	rgb1[y][x] = 0;
 	for(int i = 0 ; i< 4 ; i++)	dfs1(y+dy[i],x+dx[i],c);
-}
+}  
 void dfs2(int y, int x,char c){ // c : ÇöÀç Ã£À» ±×·ì 
 	if( y<0||y>=n||x<0 ||x>=n || rgb2[y][x] == 0 ) return;
 	if(rgb2[y][x] == 'B'){
