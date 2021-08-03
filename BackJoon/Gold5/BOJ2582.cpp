@@ -20,7 +20,7 @@ void Input(){
 void BFS(int a,int b){
 	queue<treasure> q;
 	q.push({a,b,0});
-	visited[a][b] = true; // for µ¹±âÀü¿¡ true·Î ÇØ¾ß ´Ù½Ã µ¹¾Æ¿ÀÁö ¾ÊÀ½  
+	visited[a][b] = true; // for ëŒê¸°ì „ì— trueë¡œ í•´ì•¼ ë‹¤ì‹œ ëŒì•„ì˜¤ì§€ ì•ŠìŒ  
 	while(!q.empty()){
 		treasure cp = q.front();	
 		q.pop();
