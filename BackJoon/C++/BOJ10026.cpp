@@ -21,7 +21,7 @@ void dfs2(int y, int x,char c){ // c : ÇöÀç Ã£À» ±×·ì
 	for(int i = 0 ; i< 4 ; i++)	dfs2(y+dy[i],x+dx[i],c);
 }
 int main(){
-	cin>>n;
+	cin>>n;  
 	for(int i = 0,j=0 ; i < n;i++,j=0){
 		string s;
 		cin>>s;
