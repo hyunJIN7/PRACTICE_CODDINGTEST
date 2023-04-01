@@ -21,8 +21,8 @@ int main(){
 	
 	
 	
-	int dIndex=2; // ÇöÀç ¹æÇâ  
-	int cy=0,cx=0;//ÇöÀç À§Ä¡  
+	int dIndex=2; // í˜„ìž¬ ë°©í–¥  
+	int cy=0,cx=0;//í˜„ìž¬ ìœ„ì¹˜  
 	
 	yMin=cy;
 	yMax=cy;
@@ -48,9 +48,8 @@ int main(){
 		xMax=max(cx,xMax);		
 
 	}
-
 	
-	for(int i = yMax-yMin ; i >=0; i--){ // y´Â ¹Ý´ë·Î Ãâ·ÂÇØÁà¾ß ³» Ç®ÀÌ¿¡ ¸ÂÀ½. 
+	for(int i = yMax-yMin ; i >=0; i--){ // yëŠ” ë°˜ëŒ€ë¡œ ì¶œë ¥í•´ì¤˜ì•¼ ë‚´ í’€ì´ì— ë§žìŒ. 
 		
 		for(int j = 0 ; j <= xMax-xMin; j++){
 			int y = i + yMin;
@@ -61,6 +60,5 @@ int main(){
 		}
 		
 		cout<<"\n";
-	}
-	
+	}	
 }
