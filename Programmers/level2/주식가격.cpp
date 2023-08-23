@@ -3,7 +3,7 @@
 #include <stack>
 
 using namespace std;
-
+// 문제 이해를 나보다 작은 것이 얼마 후에 나오나를 푸는 문제. 테스트 케이스가 너무 빈약 
 vector<int> solution(vector<int> prices) {
     vector<int> answer(prices.size());
     stack<int> s;
