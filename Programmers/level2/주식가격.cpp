@@ -3,23 +3,28 @@
 #include <stack>
 
 using namespace std;
-// 문제 이해를 나보다 작은 것이 얼마 후에 나오나를 푸는 문제. 테스트 케이스가 너무 빈약 
+//문제 이해를 나보다 작은 것이 얼마 후에 나오나 
 vector<int> solution(vector<int> prices) {
-    vector<int> answer(prices.size());
-    stack<int> s;
     int len = prices.size();
-    for(int i = 0 ; i< len ; i++){
+    vector<int> answer(len);
+    stack<int> st;
+    
+    for(int i = 0 ; i < len; i++){
         
-        while(!s.empty() && prices[s.top()] > prices[i]){
-            answer[s.top()]=i-s.top();
-            s.pop();
+        while(!st.empty() && prices[i] < prices[st.top()]){
+            // stack 보다 작은 수 들어오면
+            answer[st.top()] = i-st.top();
+            st.pop();
         }
-        s.push(i);
+        st.push(i);
     }
-    while(!s.empty()){
-        answer[s.top()]=len-s.top()-1;
-        s.pop();
+    
+    //stack에 남은 수는 len 대상으로 한번더 while 진행
+    while(!st.empty()){
+        answer[st.top()] = len - st.top() -1;
+        st.pop();
     }
+    
     
     return answer;
 }
