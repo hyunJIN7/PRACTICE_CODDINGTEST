@@ -15,13 +15,11 @@ int main(){
 		for(int j = 0 ; j < N ; j++) cin>>v[i][j];
 			
 	
-//	for(int i = 0; i < N ; i++){
-//		for(int j = 0 ; j < N ; j++){
-//			for(int k = 0 ; k < N ; k++){
-//				if(v[i][j] && v[j][k]) v[i][k]=1; 
-//			}
-//		}
-//	}
+	/*
+	- 가로 세로 접근 순서 주의
+	- i->j->k를 확인하는데 j를 올수 있는 i들을 먼저 확인 
+						=> 즉 , 세로로 탐색 , 가로 먼저 가면 틀림  
+	*/
 	for(int j = 0 ; j < N ; j++){
 		for(int i = 0; i < N ; i++){
 			for(int k = 0 ; k < N ; k++){
