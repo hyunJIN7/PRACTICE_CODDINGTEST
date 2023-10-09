@@ -1,6 +1,5 @@
 /*
   보통의 BFS,DFS 처럼 현재 칸만 고려하는 것이 아닌 이제까지 확정된 칸의 주변 칸을 탐색하며 나아가는 방법 
-
 */
 #include <iostream>
 #include <vector>
