@@ -9,7 +9,7 @@ using namespace std;
 int N, M;
 
 bool can_use[NUM_BTN], can_make[MAX] = {0,};
-vector<int> btn; // ´©¸¦ ¼ö ÀÖ´Â ¼ıÀÚ ¹öÆ°  
+vector<int> btn; // ëˆ„ë¥¼ ìˆ˜ ìˆëŠ” ìˆ«ì ë²„íŠ¼  
 
 int ans = INT_MAX;
 
@@ -45,7 +45,7 @@ int main(){
 	}
 	for(int i = 1 ; i < NUM_BTN; i++)
 		if(can_use[i]) btn.push_back(i);	
-	if(can_use[0]) btn.push_back(0); // 0 ¸¶Áö¸·¿¡ ³Ö¾î¾ßÇØ  
+	if(can_use[0]) btn.push_back(0); // 0 ë§ˆì§€ë§‰ì— ë„£ì–´ì•¼í•´  
 		
 	
 	ans = abs(N - 100);
