@@ -5,22 +5,20 @@
 using namespace std;
 
 /*
- T -> S ¹æÇâÀ¸·Î 
- ¸¸¾à T[i]°¡ A¶ó¸é 
- S[i-1] -> S[i] : AÃß°¡, ÀÌ·¸°Ô ¿¬»êÀÌ Á¤ÇØÁø´Ù.  
+ T -> S ë°©í–¥ìœ¼ë¡œ 
+ ë§Œì•½ T[i]ê°€ Aë¼ë©´ 
+ S[i-1] -> S[i] : Aì¶”ê°€, ì´ë ‡ê²Œ ì—°ì‚°ì´ ì •í•´ì§„ë‹¤.  
 */
-
-
 int main(){
 	ios::sync_with_stdio(false); cin.tie(0);
 	string S,T;
 	cin >> S >> T;
 	int Slen = S.size(),Tlen = T.size();
 	
-	int op[MAX]; // index : s ~ Tlen-1 ±îÁö   
+	int op[MAX]; // index : s ~ Tlen-1 ê¹Œì§€   
 	
-	//¾î¶² ¿¬»ê ÇØ¾ßÇÏ´ÂÁö  	
-	// ÇØ´ç ¿¬»ê¿¡ ¸Â°Ô ¹Ù²ã¼­ T¿Í °°³ª È®ÀÎ	 
+	//ì–´ë–¤ ì—°ì‚° í•´ì•¼í•˜ëŠ”ì§€  	
+	// í•´ë‹¹ ì—°ì‚°ì— ë§žê²Œ ë°”ê¿”ì„œ Tì™€ ê°™ë‚˜ í™•ì¸	 
 	for(int i = Tlen - 1 ; Slen <= i; i--){
 		op[i] = (T[i] == 'A')? 0 : 1;		
 		T = T.substr(0,i);
