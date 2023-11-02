@@ -11,7 +11,7 @@ bool visited[MAX_N] = {0,};
 int ans = 0;
 
 void Backtrack(int start, int sum, int min_level, int max_level, int depth){
-	// ½ÃÀÛ ÀÎµ¦½º, ÀüÃ¼ ÇÕ, ¿ø¼Ò min,max, ¿ø¼Ò °³¼ö  
+	// ì‹œìž‘ ì¸ë±ìŠ¤, ì „ì²´ í•©, ì›ì†Œ min,max, ì›ì†Œ ê°œìˆ˜  
 	if(depth >= 2 ){
 		if(sum > R || depth > N) return;
 		else if(sum >= L)
