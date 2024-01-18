@@ -2,7 +2,7 @@
 #include <algorithm>
 
 #define MAX_N 500001
-
+ 
 using namespace std;
 
 typedef long long ll;
