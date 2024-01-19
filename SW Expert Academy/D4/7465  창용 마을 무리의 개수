@@ -1,0 +1,53 @@
+#include<iostream>
+#include <cstring>
+#define MAX_N 101
+using namespace std;
+int N, M;
+int parent[MAX_N], depth[MAX_N];
+
+void init(){
+	memset(depth, 0, sizeof(depth));
+	for(int i = 1 ; i <= N; i++) parent[i] = i;
+}
+
+int Find(int x){
+	if(parent[x] == x) return x;
+	return parent[x] = Find(parent[x]);
+}
+
+void Union(int a,int b){
+	int pa = Find(a), pb = Find(b);
+	if(pa == pb) return; //부모 자체가 같다면 
+	
+	if(depth[pa] < depth[pb]){
+		parent[pa] = pb;
+	} 
+	else if(depth[pa] > depth[pb]){
+		parent[pb] = pa;
+	}
+	else{ //depth 같다면 
+		parent[pb] = pa;
+		depth[pa]++;
+	}
+}
+
+int main(int argc, char** argv)
+{
+	int T;
+	cin>>T;
+	
+	for(int test_case = 1; test_case <= T; ++test_case)
+	{
+		cin >> N >> M;
+		init();
+		while(M--){
+			int a,b;
+			cin >> a >> b;
+			Union(a,b);
+		}
+		int ans = 0;
+		for(int i = 1; i <= N; i++) if(i == parent[i]) ans++;
+		cout << "#" << test_case << " " << ans << "\n";
+	}
+	return 0;
+}
