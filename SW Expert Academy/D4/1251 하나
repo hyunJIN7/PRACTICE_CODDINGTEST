@@ -1,0 +1,57 @@
+#include<iostream>
+#include <cstring>
+#include <iomanip>
+#include <climits>
+
+#define MAX_N 1000
+using namespace std;
+typedef long long ll;
+
+int x[MAX_N], y[MAX_N];
+int N;
+double E;
+ll dis[MAX_N];
+bool visited[MAX_N];
+
+ll getDis(int a, int b) {
+	return 1LL * (x[a] - x[b]) * (x[a] - x[b]) + 1LL * (y[a] - y[b]) * (y[a] - y[b]);
+}
+
+int main(int argc, char** argv)
+{
+	ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+	int T;
+	cin >> T;
+	for (int test_case = 1; test_case <= T; test_case++) {
+		int N;
+		cin >> N;
+		fill(dis, dis + N, LLONG_MAX);
+		memset(visited, 0, sizeof(visited));
+		
+		for (int i = 0; i < N; i++)cin >> x[i];
+		for (int i = 0; i < N; i++)cin >> y[i];
+
+		cin >> E;
+		ll ans = 0;
+		int curr_id = 0;
+		for (int cnt = 1; cnt <= N; ) {
+			int min_id = curr_id;
+			ll min_dis = -1;
+			for (int i = 0; i < N; i++) {
+				if (visited[i]) continue;
+				dis[i] = min(dis[i], getDis(curr_id, i));
+				if (dis[i] < min_dis || min_dis == -1) {
+					min_dis = dis[i];
+					min_id = i;
+				}
+			}
+			cnt++;
+			visited[min_id] = true;
+			curr_id = min_id;
+			ans += min_dis;
+		}
+
+		cout << "#" << test_case << " " << fixed << setprecision(0) << E * ans << "\n";
+	}
+	return 0;
+}
