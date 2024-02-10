@@ -11,7 +11,7 @@ using namespace std;
 vector<pair<int, int> > onward[MAX_N], backward[MAX_N];
 int N, X;
 int total_time[MAX_N];
-
+ 
 void solve(vector<pair<int, int>> vec[MAX_N]) {
 	int min_time[MAX_N];
 	fill(min_time, min_time + N, INT_MAX);
