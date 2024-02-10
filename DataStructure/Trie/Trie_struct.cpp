@@ -29,7 +29,7 @@ struct Trie{
 		// A Node의 Insert를 호출해 B가 있는지 검사하고 이렇게 
 	}
 	
-	void Find(char *str){
+	bool Find(char *str){
 		if(str == NULL){   
 			return Finish; // 해당 문자열을 찾았다면 true, 아님 false 
 //			if (Finish == true) return true; 
