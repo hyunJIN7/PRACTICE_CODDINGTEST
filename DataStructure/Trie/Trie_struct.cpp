@@ -72,7 +72,7 @@ int main(){
 		if(Root->Node[i] != NULL){
 			char Str[5] = {NULL};
 			Str[0] = i + 'A';
-			root->IsSorting(Root->Node[i,Str,1]);
+			root->IsSorting(root->Node[i,Str,1]);
 		}
 	}
 	
