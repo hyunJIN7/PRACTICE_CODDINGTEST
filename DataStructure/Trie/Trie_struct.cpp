@@ -58,21 +58,21 @@ struct Trie{
 int main(){
 	ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 	Trie *root = new Trie();
-	char *Str[5];
-	Str[0] = "ZYX";
-	Str[1] = "BCG";
-	Str[2] = "ABC";
-	Str[3] = "BDE";
-	Str[4] = "ABCD";
+	char *String[5];
+	String[0] = "ZYX";
+	String[1] = "BCG";
+	String[2] = "ABC";
+	String[3] = "BDE";
+	String[4] = "ABCD";
 	
 	for(int i = 0 ; i < 5; i++){
-		root->Insert(Str[i]);
+		root->Insert(String[i]);
 	}
 	for(int i = 0 ; i < 26; i++){
 		if(Root->Node[i] != NULL){
 			char Str[5] = {NULL};
 			Str[0] = i + 'A';
-			root->IsSorting(root->Node[i,Str,1]);
+			root->IsSorting(root->Node[i],Str,1);
 		}
 	}
 	
