@@ -38,10 +38,27 @@ int query(int *tree, int node, int ts, int te, int qs, int qe){
 	return min(a, b);
 }
 
+// 기존 값을 val로 대체하는 update
+int update(int *tree, int node, int s, int e,int ii, int val){
+	// https://reakwon.tistory.com/44
+	// int arr[] = {7, 4, 5, 1, 9, 5, 2, 11, 10};
+	//만약 ii = 5 번 인덱스를 update 해야한다면 tree에선 12,6,3,1 번 노드 갱신 필요
+	if( ii < s || e < ii) return tree[node];
+
+	if(s == e) return tree[node] = val;
+
+	int m = (s + e) / 2;
+	int a = update(tree, node * 2, s , m, ii, value);
+	int b = update(tree, node * 2 + 1, m + 1, e, ii, value);
+	return tree[node] = min(a, b);
+} 
+
+// 기존 값에 val을 더하는 update
 int update(int *tree, int node, int s, int e, int ii, int value){
+	//여기 update는 다ㅣㅅ!!!! 
 	// ii : 수정할 arr 인덱스 
 	// value : 갱신할 값 
-	// s, e 트리 인덱스 같은데, 그니까 크기는 arr과 같은 누적합 배열 인덱스 
+	// s, e : 구간!!!!! 트리 인덱스 같은데, 그니까 크기는 arr과 같은 누적합 배열 인덱스 
 	// node는 세그 트리 노드 번호 
 		
 	//범위 밖 
@@ -53,7 +70,7 @@ int update(int *tree, int node, int s, int e, int ii, int value){
 	int m = (s + e) / 2;
 	int a = update(tree, node * 2, s , m, ii, value);
 	int b = update(tree, node * 2 + 1, m + 1, e, ii, value);
-	return min(a, b);
+	return tree[node] = min(a, b);
 } 
 
 
