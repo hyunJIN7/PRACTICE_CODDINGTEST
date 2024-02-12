@@ -16,7 +16,7 @@ struct Trie{
 	}
 	
 	void Insert(char *str){
-		if(str == NULL){ //문자열의 끝 
+		if(*str == NULL){ //문자열의 끝 
 			is_terminal = true;
 			return;
 		}
@@ -25,7 +25,7 @@ struct Trie{
 		child[idx]->Insert(str + 1);
 	}
 	bool Find(char *str){
-		if(str == NULL) return is_terminal;
+		if(*str == NULL) return is_terminal;
 		int idx = *str - OFFSET;
 		if(child[idx] == NULL) return false;
 		return child[idx]->Find(str + 1);
