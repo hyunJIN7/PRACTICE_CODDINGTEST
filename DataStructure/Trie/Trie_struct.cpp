@@ -1,3 +1,4 @@
+//IsSorting 파트에서 str[]=NULL 안먹힘. 이전 값도 같이 출력됨. vector로 하던가 개선 필요.
 //https://yabmoons.tistory.com/379
 //https://github.com/goragoraki/Data-Structure/blob/main/8.%20Trie/trie.cpp
 #include<iostream>
