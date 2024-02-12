@@ -2,4 +2,5 @@
 O(log N)
 
 # SQRT Decomposition
-O(√N)
+O(√N) : 쿼리 수행
+O(1) : 갱신 
