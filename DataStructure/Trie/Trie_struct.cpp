@@ -1,58 +1,52 @@
 //https://yabmoons.tistory.com/379
 //https://github.com/goragoraki/Data-Structure/blob/main/8.%20Trie/trie.cpp
-#include <iostream>
-using namespace std;
-
+#include<iostream>
+#define OFFSET 'a'
+#define M 26
 struct Trie{
-	bool Finish;
-	Trie *Node[26];
-	Trie(){ //생성자 
-		Finish = false;
-		for(int i = 0 ; i < 26; i++) Node[i] = NULL;	
+	
+	bool is_terminal;
+	Trie* child[M];
+	Trie(){
+		is_terminal = false;
+		for(int i = 0; i < M; i++) child[i] = NULL;
 	}
-	~Trie(){ //소멸자  
-		for(int i = 0 ; i < 26; i++)
-			if(Node[i]) delete Node[i];
+	~Trie(){
+		for(int i = 0; i < M; i++) delete child[i];
 	}
 	
 	void Insert(char *str){
-		if(*str == NULL){
-			Finish = true;
+		if(str == NULL){ //문자열의 끝 
+			is_terminal = true;
 			return;
-		}	
-		int curr = *str - 'A';
-		if (Node[curr] == NULL) Node[curr] = new Trie(); //업는 곳 이면 새로 생성 
-		Node[curr]->Insert(str + 1); // 다음 문자 삽입   
-		//구조체의 포인터는 ->로 접근  
-		//해당 노드 그 자체의 Insert로 가는 거지 
-		// 'ABC'에서 A에서 이 줄을 호출하면 (즉 B를 넘기면)
-		// A Node의 Insert를 호출해 B가 있는지 검사하고 이렇게 
+		}
+		int idx = *str - OFFSET;
+		if(child[idx] == NULL) child[idx] = new Trie();
+		child[idx]->Insert(str + 1);
+	}
+	bool Find(char *str){
+		if(str == NULL) return is_terminal;
+		int idx = *str - OFFSET;
+		if(child[idx] == NULL) return false;
+		return child[idx]->Find(str + 1);
+	}
+	void IsSorting(Trie *node, char str[], int idx){
+		if(node->is_terminal){
+			cout << str;
+			
+			return;
+		}
+		
+		for(int i = 0 ; i < M ; i++){
+			if(child[i] == NULL) continue;
+			str[idx] = OFFSET + i;
+			child[i]->IsSorting(child[i],str,idx+1);
+		}
+		
+		
 	}
 	
-	bool Find(char *str){
-		if(str == NULL){   
-			return Finish; // 해당 문자열을 찾았다면 true, 아님 false 
-//			if (Finish == true) return true; 
-//			return false;
-		} 		
-		int curr = *str - 'A';
-		if(Node[curr] = NULL) return false; //노드가 생성되지 않았다면 => trie에 없는 문자자
-		return Node[curr]->Find(str + 1); 		
-	}
-		//생성된 노드들 출력  
-	void IsSorting(Trie *N, char str[], int idx){
-		if(N->Finish) cout << str << "\n"; //tire의 finish가 true면 출력
-		for(int i = 0 ; i < 26; i++){
-			
-			if(N->Node[i] != NULL){
-				char c = i + 'A';
-				str[idx] = c;
-				N->IsSorting(N->Node[i], str, idx+1);
-			}
-		}  
-	} 
 };
-
 
 
 int main(){
