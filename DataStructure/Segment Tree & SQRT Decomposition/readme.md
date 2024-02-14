@@ -7,13 +7,14 @@ O(log N) : point update, range query
 - 트리 구조
 ### Top Down
 - 기본 구현 방식은 Top Down
- -  배열 크기 : 4 * N
- -  lazy propagation은 top down이 더 좋음
- -  ~~top down이 bu 보다 빠른 경우는 배열 크기는 같지만 접근하는 원소의 개수가 훨씬 적은 경우??(정확하게 뭐가 더 빠른지 모르겠다. 이건 pass)~~
-### Botton Up 방식이 구현 익숙해지면 더 쉽고 코드도 더 짧고 빠름.(코드에 최적화가 더 빡세게 되어 있어 시간이 더 빠름)
- -  배열 : 2의 거듭 제곱
- -  리프노드 base index = 2 ^ (ceil(logN))이라 생각해도 좋음
- -  
+-  배열 크기 : 4 * N
+-  lazy propagation은 top down이 더 좋음
+-  ~~top down이 bu 보다 빠른 경우는 배열 크기는 같지만 접근하는 원소의 개수가 훨씬 적은 경우??(정확하게 뭐가 더 빠른지 모르겠다. 이건 pass)~~
+### Botton Up 
+- 방식이 구현 익숙해지면 더 쉽고 코드도 더 짧고 빠름.(코드에 최적화가 더 빡세게 되어 있어 시간이 더 빠름)
+-  배열 : 2의 거듭 제곱
+-  리프노드 base index = 2 ^ (ceil(logN))이라 생각해도 좋음
+-  
  
 
 # SQRT Decomposition
