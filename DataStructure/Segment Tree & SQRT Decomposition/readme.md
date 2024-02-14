@@ -13,7 +13,7 @@ O(log N) : point update, range query
 ### Botton Up 
 - 방식이 구현 익숙해지면 더 쉽고 코드도 더 짧고 빠름.(코드에 최적화가 더 빡세게 되어 있어 시간이 더 빠름)
 -  배열 : 2의 거듭 제곱
--  리프노드 base index = 2 ^ (ceil(logN))이라 생각해도 좋음
+-  리프노드 base index = 2 ^ (ceil(logN))이라 생각해도 좋음, 그니까 N보다 작거나 같은 2의 거듭제곱 값이 base
 -  
  
 
