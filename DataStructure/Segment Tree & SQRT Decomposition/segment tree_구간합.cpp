@@ -52,7 +52,7 @@ int update(int *tree, int node, int s, int e, int ii, int value){
 	int m = (s + e) / 2;
 	int a = update(tree, node * 2, s , m, ii, value);
 	int b = update(tree, node * 2 + 1, m + 1, e, ii, value);
-	return tree[node] = a + b; 
+	return a + b; 
 } 
 
 
