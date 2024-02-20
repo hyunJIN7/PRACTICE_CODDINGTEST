@@ -7,3 +7,6 @@
 - insert()
 - front() ,back()
 - dq[i][j] 접근 가능
+- 중간 : O(n)
+- 앞/뒤 : amortized O(1)
+
