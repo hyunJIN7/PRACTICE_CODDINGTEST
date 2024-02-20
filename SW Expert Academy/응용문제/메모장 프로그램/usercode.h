@@ -58,7 +58,6 @@ char moveCursor(int mRow, int mCol)
 	mRow--;
 	mCol--;
 	if (mRow* W + mCol >= total_cnt) {
-	//TODO : 마지막꺼 다음 위치 인데 맞나.
 		Y = total_cnt / W;
 		X = total_cnt % W;
 		return '$';
