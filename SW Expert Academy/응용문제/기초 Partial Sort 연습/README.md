@@ -1,5 +1,3 @@
-
-
 # usercode.h
 ```cpp
 using namespace std;
