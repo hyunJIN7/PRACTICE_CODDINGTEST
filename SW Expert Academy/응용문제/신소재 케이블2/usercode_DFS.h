@@ -1,76 +1,78 @@
 #include <unordered_map>
 #include <vector>
-#define MAX_N 10001
+#include <algorithm>
+#define MAX_N 10002
 using namespace std;
-
-unordered_map<int, int> idm;
 struct node {
-	int id, lat;
+	int id;
+	int latency;
 };
-vector<vector<node>> network;
+unordered_map <int, int> id_map; // 0부터 시작
+vector<node> network[MAX_N];
 int total;
 
-void init(int mD) {
-	idm.clear();
-	network.clear();
-	network.reserve(MAX_N);
-	idm.insert({mD,total++});
+void init(int mDevice)
+{
+	//각 network 100개씩 리사이즈 할까 
+	for (int i = 0; i < MAX_N; i++) network[i].clear();
+	id_map.clear();
+	total = 0;
+	id_map[mDevice] = total++;
+
 }
 
-void connect(int oid, int nid, int mLatency) {
-	idm.insert({ nid,total });
-	nid = total++;
-	network[oid].push_back({nid,mLatency});
-	network[nid].push_back({ oid,mLatency });
+int get_id(int id) { return id_map[id]; }
+
+void connect(int mOldDevice, int mNewDevice, int mLatency)
+{
+	id_map[mNewDevice] = total;
+	int from = get_id(mOldDevice);
+	network[from].push_back({ total, mLatency });
+	network[total].push_back({ from, mLatency });
+	total++;
 }
 
-int getLatency(int par,int from,int to,int lat) {
+int getLatency(int par, int from, int to, int lat) {
+	//일단 누적하며 끝까지 가고 대신 값은 to랑 같을 때만 리턴하면 됨.
 	if (from == to) return lat;
-
 	for (node& n : network[from]) {
-
-		if (n.id == par) continue;
-
-		int ret = getLatency(from, n.id , to, lat + n.lat);
-		if (ret) return ret;
-
+		if (n.id != par) {
+			int ret = getLatency(from, n.id, to, lat + n.latency);
+			if (ret) return ret;
+		}
 	}
 	return 0;
-
 }
 
-int measure(int id1, int id2) {
-	id1 = idm[id1];
-	id2 = idm[id2];
-	getLatency(id1,id1,id2,0);
+int measure(int mDevice1, int mDevice2)
+{
+	int id = get_id(mDevice1);
+	return getLatency(id, id, get_id(mDevice2), 0);
 }
 
-int getMaxLatency(int pid,int id) {
-
-	int ret = 0;
-
-	//내 하위에서 큰거 하나 뽑으며 올라간다.
-	for (node& n : network[id]) {
-		if (pid == n.id) continue;
-		int lat = getMaxLatency(id,n.id) + n.lat;
-		ret = max(ret, lat);
+int getMaxLatency(int par, int curr) {
+	int max_lat = 0;
+	for (node& n : network[curr]) {
+		if (n.id != par) {
+			int ret = getMaxLatency(curr, n.id) + n.latency;
+			if (max_lat < ret)
+				max_lat = ret;
+		}
 	}
-	return ret;
+	return max_lat;
 }
 
-int test(int id) {
-	id = idm[id];
-
+// 어차피 connect에서 조건 때문에 사이클 안생겨
+int test(int mDevice)
+{
 	int first = 0, second = 0;
+	int id = get_id(mDevice);
 	for (node& n : network[id]) {
-		int lat = getMaxLatency(id, n.id) + n.lat;
-		if (lat > first) {
-			second = first;
-			first = lat;
-		}
-		else if (lat > second) {
-			second = lat;
-		}
+		int latency = getMaxLatency(id, n.id) + n.latency;
+		if (first < latency)
+			second = first, first = latency;
+		else if (second < latency)
+			second = latency;
 	}
 	return first + second;
 }
