@@ -3,14 +3,14 @@
 #define MAX_N 101
 #define MAX_P 500
 using namespace std;
-
+  
 int N, T, P;
 vector<pair<int, int>> qeury;
 int seat[MAX_N];
 int ans = 0;
 
 int findMinSeatDist(int hour, int id) {
-    // id의 자리와 가장 가까운 곳의 거리 
+    // id의 자리와 가장 가까운 곳의 거리  
     // id 주변 자리 중 예약된 곳 중 가장 가까운 곳 
     int min_dist = MAX_N;
     for (int i = 1; i <= N; i++) {
