@@ -6,7 +6,7 @@
 #define MAX_N 100004
 using namespace std;
 typedef long long ll;
-
+  
 int N;
 priority_queue<ll, vector<ll>, greater<ll>> pq;
 int main() {
