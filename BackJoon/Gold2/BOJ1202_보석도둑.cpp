@@ -8,7 +8,6 @@ using namespace std;
 typedef pair<int, int> pii;
 int N, K;
 
-
 int main()
 {
 	ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
@@ -31,10 +30,8 @@ int main()
 	int idx = 0;
 	for (int b : bag) {
 		while (idx < N && jewerly[idx].first <= b) {
-			pq.push(jewerly[idx].second);
-			idx++;
+			pq.push(jewerly[idx++].second);
 		}
-		
 		while (!pq.empty()) {
 			ans += pq.top(); pq.pop();
 			break;
