@@ -1,35 +1,31 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
 using namespace std;
 
-int main(){
-	int n,k,ans=0;
-	scanf("%d %d",&n,&k);
-	if(k>=n) {
-		printf("0\n");
-		return 0;
+int main()
+{
+	ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+	int N, K ,ans = 0;
+	cin >> N >> K;
+	vector<int> vec;
+	for (int i = 0; i < N; i++) {
+		int num; cin >> num;
+		vec.push_back(num);
 	}
-	vector<int>sensor,dist;
-	for(int i = 0,loc ; i < n ;i++) {
-		scanf("%d",&loc);
-		sensor.push_back(loc);	
-	}
-	sort(sensor.begin(),sensor.end()); // ¼¾¼­ À§Ä¡ Á¤·Ä 
-	sensor.erase(unique(sensor.begin(),sensor.end()),sensor.end());//Áßº¹Á¦°Å
+	sort(vec.begin(), vec.end());
+
+	//ì‚¬ì´ ê°„ê²©ë§Œ ë³´ë©´ ëœë‹¤. ê·¸ë¦¬ê³ 
+	// ìµœëŒ€ Kê°œ ë¼ê³¤ í•˜ì§€ë§Œ Kê°œ ê·¸ë£¹ ë§Œë“¤ì–´ì•¼ ì˜ì—­ ìµœì†Œ ëœë‹¤.
+	vec.erase(unique(vec.begin(), vec.end()), vec.end());
+	N = vec.size();
+	for (int i = 0; i < N-1; i++) vec[i] = vec[i + 1] - vec[i]; // ê°„ê²©
 	
-	for(int i = 0 ; i < sensor.size()-1;i++){
-		dist.push_back(sensor[i+1]-sensor[i]);
-	} 
-	sort(dist.rbegin(),dist.rend());
-	for(int i =k-1;i<dist.size();i++){
-		ans+=dist[i];
-	}
-	printf("%d\n",ans);
-} 
-/*
- ¼¾¼­ÀÇ À§Ä¡±â¹ÝÀ¸·Î ¸·´ë¸¦ ¸¸µé°í
- ¸·´ë »çÀÌÀÇ °Å¸®¸¦ ±¸ÇÔ
- ¸·´ë°¡ ´Ù ¿¬°áµÇ¾î ÀÖ´Ù »ý°¢ÇÑ´ÙÀ½
- ±× ¼¾¼­ »çÀÌÀÇ ¿¬°áÀ» ²÷¾î¼­ k°³ÀÇ ¸·´ë¸¦ ¸¸µå´Â°ÅÁö
- ±×·¯±â À§ÇØ °¢ ¼¾¼­ »çÀÌ °Å¸® ±¸ÇØ¼­ ³»¸² Â÷¼ø Á¤·Ä ÈÄ
- ±æÀÌ ±ä ¼øÀ¸·Î k-1°³ Á¦°Å ÈÄ ³²Àº °ÍµéÀÇ ÇÕÀ» ±¸ÇÏ¸é ´ä  
- */
+	vec.pop_back();
+	sort(vec.begin(), vec.end());
+
+	for (int i = 0; i < N - K; i++) ans += vec[i];
+	cout << ans;
+	return 0;
+}
